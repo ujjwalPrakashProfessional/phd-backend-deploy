@@ -14,7 +14,8 @@ func gCalendarConnect() {
 	ctxb := context.Background()
 	srv, err := calendar.NewService(ctxb, option.WithCredentialsFile("./secret.GCPcredentials.json"))
 	if err != nil {
-		log.Fatalf("Unable to retrieve Calendar client: %v", err)
+		log.Printf("Unable to retrieve Calendar client: %v", err)
+		return
 	}
 	cal_srv = srv
 }

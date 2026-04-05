@@ -10,6 +10,9 @@ import (
 )
 
 func deleteCalenderEvent(cID string, cevent *ProformaEvent) {
+	if cal_srv == nil {
+		return
+	}
 	err := cal_srv.Events.Delete(cID, cevent.CalID).Do()
 	if err != nil {
 		logrus.Errorf("Unable to create event. %v", err)
@@ -17,6 +20,9 @@ func deleteCalenderEvent(cID string, cevent *ProformaEvent) {
 }
 
 func insertCalenderEvent(event *ProformaEvent, proforma *Proforma, loc *time.Location, time_zone string, cID string) {
+	if cal_srv == nil {
+		return
+	}
 	cevent := &calendar.Event{
 		Summary:  fmt.Sprintf("%s - %s, %s", event.Name, proforma.Profile, proforma.CompanyName),
 		Location: event.Venue,
@@ -56,6 +62,9 @@ func insertCalenderEvent(event *ProformaEvent, proforma *Proforma, loc *time.Loc
 }
 
 func insertCalenderApplicationDeadline(proforma *Proforma, event *ProformaEvent) {
+	if cal_srv == nil {
+		return
+	}
 	time_zone := "Asia/Kolkata"
 	loc, _ := time.LoadLocation(time_zone)
 
