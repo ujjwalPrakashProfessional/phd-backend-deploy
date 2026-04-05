@@ -15,7 +15,7 @@ var db *gorm.DB
 var logf *os.File
 
 func openConnection() {
-	dsn := viper.GetString("DATABASE_URL") + "&search_path=auth,public"
+	dsn := viper.GetString("DATABASE_URL") + "&search_path=ras_auth,public"
 
 	database, err := gorm.Open(postgres.New(postgres.Config{
 		DSN:                  dsn,
@@ -29,6 +29,8 @@ func openConnection() {
 	}
 
 	db = database
+	db.Exec("CREATE SCHEMA IF NOT EXISTS ras_auth;")
+
 
 	err = db.AutoMigrate(&User{}, &OTP{}, &CompanySignUpRequest{})
 	if err != nil {
