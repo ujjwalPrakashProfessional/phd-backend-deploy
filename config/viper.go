@@ -23,4 +23,6 @@ func viperConfig() {
 	if err != nil {
 		logrus.Errorf("Fatal error secret file: %s \n", err)
 	}
+
+	viper.AutomaticEnv() // allows Railway env vars to override YAML values
 }

@@ -15,15 +15,7 @@ import (
 var db *gorm.DB
 
 func openConnection() {
-	host := viper.GetString("DATABASE.HOST")
-	port := viper.GetString("DATABASE.PORT")
-	password := viper.GetString("DATABASE.PASSWORD")
-
-	dbName := viper.GetString("DBNAME.STUDENT")
-	user := dbName + viper.GetString("DATABASE.USER")
-
-	dsn := "host=" + host + " user=" + user + " password=" + password
-	dsn += " dbname=" + dbName + " port=" + port + " sslmode=disable TimeZone=Asia/Kolkata"
+	dsn := viper.GetString("DATABASE_URL") + "&search_path=student,public"
 	log.Println(dsn)
 
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
