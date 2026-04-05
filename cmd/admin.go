@@ -14,7 +14,7 @@ import (
 )
 
 func adminRCServer(mail_channel chan mail.Mail) *http.Server {
-	PORT := viper.GetString("PORT.ADMIN.RC")
+	PORT := viper.GetString("SERVER_PORT.ADMIN.RC")
 	engine := gin.New()
 	engine.Use(middleware.CORS())
 	engine.Use(middleware.Authenticator())
@@ -35,7 +35,7 @@ func adminRCServer(mail_channel chan mail.Mail) *http.Server {
 }
 
 func adminApplicationServer(mail_channel chan mail.Mail) *http.Server {
-	PORT := viper.GetString("PORT.ADMIN.APP")
+	PORT := viper.GetString("SERVER_PORT.ADMIN.APP")
 	engine := gin.New()
 	engine.Use(middleware.CORS())
 	engine.Use(middleware.Authenticator())
@@ -56,7 +56,7 @@ func adminApplicationServer(mail_channel chan mail.Mail) *http.Server {
 }
 
 func adminCompanyServer() *http.Server {
-	PORT := viper.GetString("PORT.ADMIN.COMPANY")
+	PORT := viper.GetString("SERVER_PORT.ADMIN.COMPANY")
 	engine := gin.New()
 	engine.Use(middleware.CORS())
 	engine.Use(middleware.Authenticator())
@@ -77,7 +77,7 @@ func adminCompanyServer() *http.Server {
 }
 
 func adminStudentServer() *http.Server {
-	PORT := viper.GetString("PORT.ADMIN.STUDENT")
+	PORT := viper.GetString("SERVER_PORT.ADMIN.STUDENT")
 	engine := gin.New()
 	engine.Use(middleware.CORS())
 	engine.Use(middleware.Authenticator())

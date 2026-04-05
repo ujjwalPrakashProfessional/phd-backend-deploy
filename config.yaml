@@ -19,7 +19,7 @@ DBNAME:
   RC: "rc"
   STUDENT: "student"
   AUTH: "auth"
-PORT:
+SERVER_PORT:
   RAS: 3470
   AUTH: 3475
   STUDENT: 3480

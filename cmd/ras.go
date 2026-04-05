@@ -11,7 +11,7 @@ import (
 )
 
 func rasServer(mail_channel chan mail.Mail) *http.Server {
-	PORT := viper.GetString("PORT.RAS")
+	PORT := viper.GetString("SERVER_PORT.RAS")
 	engine := gin.New()
 	engine.Use(middleware.CORS())
 	// engine.Use(middleware.Authenticator())

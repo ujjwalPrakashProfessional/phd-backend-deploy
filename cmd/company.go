@@ -12,7 +12,7 @@ import (
 )
 
 func companyServer() *http.Server {
-	PORT := viper.GetString("PORT.COMPANY")
+	PORT := viper.GetString("SERVER_PORT.COMPANY")
 	engine := gin.New()
 	engine.Use(middleware.CORS())
 	engine.Use(middleware.Authenticator())

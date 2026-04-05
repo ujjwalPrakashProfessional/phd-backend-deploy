@@ -13,7 +13,7 @@ import (
 )
 
 func studentServer(mail_channel chan mail.Mail) *http.Server {
-	PORT := viper.GetString("PORT.STUDENT")
+	PORT := viper.GetString("SERVER_PORT.STUDENT")
 	engine := gin.New()
 	engine.Use(middleware.CORS())
 	engine.Use(middleware.Authenticator())
