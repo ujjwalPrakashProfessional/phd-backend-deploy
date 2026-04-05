@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"github.com/spo-iitk/ras-backend/mail"
 )
@@ -38,6 +39,7 @@ func otpHandler(mail_channel chan mail.Mail) gin.HandlerFunc {
 		}
 
 		otp := generateOTP()
+		logrus.Infof("Generated OTP for %s: %s", otpReq.UserID, otp)
 
 		err := saveOTP(ctx, &OTP{
 			UserID:  otpReq.UserID,

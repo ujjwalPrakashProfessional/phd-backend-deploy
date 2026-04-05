@@ -1,6 +1,8 @@
 package config
 
 import (
+	"strings"
+
 	"github.com/sirupsen/logrus"
 
 	"github.com/spf13/viper"
@@ -24,5 +26,6 @@ func viperConfig() {
 		logrus.Errorf("Fatal error secret file: %s \n", err)
 	}
 
-	viper.AutomaticEnv() // allows Railway env vars to override YAML values
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	viper.AutomaticEnv() // allows Railway env vars like MAIL_HOST to map to MAIL.HOST
 }
