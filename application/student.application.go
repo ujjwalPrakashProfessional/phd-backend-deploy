@@ -26,7 +26,7 @@ func getApplicationHandler(ctx *gin.Context) {
 
 	sid := getStudentRCID(ctx)
 	if sid == 0 {
-		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "SRCID not found"})
 		return
 	}
 
