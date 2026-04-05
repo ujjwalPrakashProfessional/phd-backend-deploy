@@ -22,7 +22,7 @@ services:
     networks:
       - default
     ports:
-      - "81:80"
+      - "80:80"
   # cdn:
   #   build:
   #     context: ../PhD-CDN
@@ -38,9 +38,10 @@ volumes:
 # network with subnet configuration
 networks:
   default:
-      driver: bridge
-      ipam:
-          driver: default
-          config:
-              - subnet: "192.168.4.0/24"
-                # gateway: "192.168.3.1"
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.4.0/24"
+          # gateway: "192.168.3.1"
+
