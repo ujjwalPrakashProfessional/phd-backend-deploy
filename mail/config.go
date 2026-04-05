@@ -1,6 +1,8 @@
 package mail
 
 import (
+	"strings"
+
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	_ "github.com/spo-iitk/ras-backend/config"
@@ -20,7 +22,11 @@ func init() {
 	logrus.Info("Initializing mailer")
 
 	user = viper.GetString("MAIL.USER")
-	sender = user + "@iitk.ac.in"
+	if strings.Contains(user, "@") {
+		sender = user
+	} else {
+		sender = user + "@iitk.ac.in"
+	}
 
 	pass = viper.GetString("MAIL.PASS")
 	host = viper.GetString("MAIL.HOST")
