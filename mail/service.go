@@ -56,9 +56,12 @@ func Service(mailQueue chan Mail) {
 
 	for mail := range mailQueue {
 		message := mail.BuildMessage()
-		to := append(mail.To, webteam)
-		batches:= batchEmails(to, batch); 
-		for _, emailBatch:= range batches {
+		to := mail.To
+		if webteam != "" {
+			to = append(to, webteam)
+		}
+		batches := batchEmails(to, batch)
+		for _, emailBatch := range batches {
 			if err := smtp.SendMail(addr, auth, sender, emailBatch, message); err != nil {
 				logrus.Errorf("Error sending mail: %v", emailBatch)
 				logrus.Errorf("Error: %v", err)
